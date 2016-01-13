@@ -9,6 +9,7 @@
 '%Y-%m-%d': '%Y-%m-%d',
 '%Y-%m-%d %H:%M:%S': '%Y-%m-%d %H:%M:%S',
 'About': 'About',
+'Error': 'Ocorreu um erro ao criar o diretório',
 'Access Control': 'Access Control',
 'Administrative Interface': 'Administrative Interface',
 'Administrative interface': 'Painel administrativo',

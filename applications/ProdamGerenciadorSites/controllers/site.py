@@ -7,10 +7,12 @@
 # @version 1.0
 ################################################
 
-import os,sys
-import xml.etree.cElementTree as xml
-
-def templates_plone
+def templates_plone():
 	'''
 	seleciona template plone
 	'''
+
+	from plone import Plone
+	p = Plone()
+	p.create()
+	return dict(p='asdsad')
