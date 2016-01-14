@@ -20,3 +20,11 @@ def create():
 		s = Skeleton(post)
 
 	return dict()
+
+def count():
+    # session.counter = (session.counter or 0) + 1
+    user = db(db.auth_user).select()
+    return dict(counter=user)
+
+def teste():
+	return dict()

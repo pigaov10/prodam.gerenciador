@@ -57,7 +57,7 @@ class Skeleton:
 		path += xpaths[4]
 		mkdir(path);
 
-    def add_configure_file(self,path,project_name,param1='IPortalHeader',param2='IProdamPortal'):
+    def add_configure_file(self,path,project_name,param1='IPortalHeader',param2='IProdamPortal',param3='prodam.gerenciador.cet'):
 		"""
 		MÉTODO RESPONSÁVEL POR GERAR O ARQUIVO ZCML 
 		"""
@@ -70,7 +70,7 @@ class Skeleton:
 
 			#seta nó para configuração das Viewlets do Plone
 			browser = tree_element_first.SubElement(configure,"browser:viewlet")
-			browser.set("name","plone.logo")
+			browser.set("name",namespace+'.'+id)
 			browser.set("manager","plone.app.layout.viewlets.interfaces."+param1)
 			browser.set("class",".logo.LogoViewlet")
 			browser.set("permission","zope2.View")
@@ -82,3 +82,34 @@ class Skeleton:
 			tree.write('sites/'+path+configure_name,encoding="utf-8")
 		except ParseError, e:
 			raise HTTP(500,e)
+
+    def add_template_file(path):
+		"""
+		MÉTODO RESPONSÁVEL POR GERAR O TEMPLATE alerta.pt 
+		"""
+		text = open('sites/components/alerta.pt','r').read()
+		file_name = "alerta.pt"
+		file = open(path+"/"+file_name,"a+")
+		file.write(text)
+		file.close()
+
+    def add_profile_file(path):
+		"""
+		MÉTODO RESPONSÁVEL POR GERAR O PROFILE CONFIGURAÇÃO VIEWLET viewlets.xml
+		"""
+		#seta nó para configuração dos namespaces
+		xml_object = tree_element_first.Element('object')
+
+		tree = tree_element_first.ElementTree(xml_object)
+		configure_name = "/profiles/default/viewlets.xml"
+		indent(xml_object)
+		tree.write(path+configure_name,encoding="utf-8")
+
+    def add_viewlets_file(path):
+		"""
+		MÉTODO RESPONSÁVEL POR GERAR O viewlets.py 
+		"""
+
+		file_name = "viewlets.py"
+		file = open(path+"/"+file_name,"a+")
+		file.close()
