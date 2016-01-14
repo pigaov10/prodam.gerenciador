@@ -12,6 +12,6 @@ def error():
 
 @auth.requires_login()
 def tbl_components_manage():
-    form = SQLFORM.smartgrid(db.t_tbl_components,onupdate=auth.archive)
+    form = SQLFORM.smartgrid(db.tbl_components)
     return locals()
 
