@@ -158,3 +158,35 @@ CREATE TABLE t_tbl_components_archive(
     current_record INTEGER REFERENCES t_tbl_components (id) ON DELETE CASCADE  
 );
 success!
+timestamp: 2016-01-14T13:54:23.154331
+CREATE TABLE tbl_components(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2016-01-14T14:01:05.468638
+ALTER TABLE tbl_components ADD tipo CHAR(512);
+timestamp: 2016-01-14T14:01:05.683406
+ALTER TABLE tbl_components ADD manager CHAR(512);
+timestamp: 2016-01-14T14:01:06.126226
+ALTER TABLE tbl_components ADD uk INTEGER;
+timestamp: 2016-01-14T14:01:06.260823
+ALTER TABLE tbl_components ADD icon CHAR(512);
+success!
+timestamp: 2016-01-14T14:06:38.389907
+CREATE TABLE tbl_components_type(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2016-01-14T14:11:08.388949
+ALTER TABLE tbl_components ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ;
+timestamp: 2016-01-14T14:11:08.518644
+ALTER TABLE tbl_components ADD is_active CHAR(1);
+timestamp: 2016-01-14T14:11:08.651263
+ALTER TABLE tbl_components ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ;
+timestamp: 2016-01-14T14:11:08.763434
+ALTER TABLE tbl_components ADD created_on TIMESTAMP;
+timestamp: 2016-01-14T14:11:08.886255
+ALTER TABLE tbl_components ADD modified_on TIMESTAMP;
+success!

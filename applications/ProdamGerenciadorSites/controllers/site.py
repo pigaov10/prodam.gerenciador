@@ -11,8 +11,12 @@ def templates_plone():
 	'''
 	seleciona template plone
 	'''
-
-	from plone import Plone
-	p = Plone()
-	p.create()
 	return dict(p='asdsad')
+
+def create():
+	if request.post_vars.site:
+		post = request.post_vars.site
+		from skeleton import Skeleton
+		s = Skeleton(post)
+
+	return dict()
