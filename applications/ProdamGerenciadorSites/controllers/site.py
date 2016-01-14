@@ -11,7 +11,7 @@ def templates_plone():
 	'''
 	seleciona template plone
 	'''
-	return dict(p='asdsad')
+	return dict(p='Templates')
 
 def create():
 	if request.post_vars.site:
