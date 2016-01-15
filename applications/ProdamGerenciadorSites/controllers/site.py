@@ -13,6 +13,7 @@ def templates_plone():
 	'''
 	return dict(p='Templates')
 
+@auth.requires_membership('admin')
 def create():
 	if request.post_vars.site:
 		post = request.post_vars.site
