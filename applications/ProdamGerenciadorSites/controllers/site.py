@@ -22,9 +22,8 @@ def create():
 	return dict()
 
 def count():
-    # session.counter = (session.counter or 0) + 1
-    user = db(db.tbl_components).select()
-    return dict(components=user)
+    components = db(db.tbl_components).select()
+    return dict(components=components)
 
 def teste():
 	return dict()

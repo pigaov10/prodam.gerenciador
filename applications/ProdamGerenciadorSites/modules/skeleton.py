@@ -41,7 +41,7 @@ class Skeleton:
 		profiles = path
 		mkdir(profiles+"/profiles");
 		mkdir(profiles+"/profiles/default/");
-
+		self.add_profile_file(path)
 		#browser
 		path += xpaths[2]
 		mkdir(path);
@@ -49,13 +49,19 @@ class Skeleton:
 		# viewlets
 		path += xpaths[1]
 		mkdir(path);
-		print path
+		
 		# zcml file
 		self.add_configure_file(path,str(self._post) + str(self.request))
-
+		
+		# python file configure
+		self.add_viewlets_file(path)
+		
 		# templates
 		path += xpaths[4]
 		mkdir(path);
+		# pt file 
+		self.add_template_file(path)
+
 
     def add_configure_file(self,path,project_name,param1='IPortalHeader',param2='IProdamPortal',param3='prodam.gerenciador.cet'):
 		"""
@@ -70,7 +76,7 @@ class Skeleton:
 
 			#seta nó para configuração das Viewlets do Plone
 			browser = tree_element_first.SubElement(configure,"browser:viewlet")
-			browser.set("name",namespace+'.'+id)
+			browser.set("name",param3)
 			browser.set("manager","plone.app.layout.viewlets.interfaces."+param1)
 			browser.set("class",".logo.LogoViewlet")
 			browser.set("permission","zope2.View")
@@ -83,17 +89,17 @@ class Skeleton:
 		except ParseError, e:
 			raise HTTP(500,e)
 
-    def add_template_file(path):
+    def add_template_file(self,path):
 		"""
 		MÉTODO RESPONSÁVEL POR GERAR O TEMPLATE alerta.pt 
 		"""
-		text = open('sites/components/alerta.pt','r').read()
+		# text = open('sites/components/alerta.pt','r').read()
 		file_name = "alerta.pt"
-		file = open(path+"/"+file_name,"a+")
-		file.write(text)
+		file = open('sites/'+path+"/"+file_name,"a+")
+		# file.write(text)
 		file.close()
 
-    def add_profile_file(path):
+    def add_profile_file(self,path):
 		"""
 		MÉTODO RESPONSÁVEL POR GERAR O PROFILE CONFIGURAÇÃO VIEWLET viewlets.xml
 		"""
@@ -102,14 +108,14 @@ class Skeleton:
 
 		tree = tree_element_first.ElementTree(xml_object)
 		configure_name = "/profiles/default/viewlets.xml"
-		indent(xml_object)
-		tree.write(path+configure_name,encoding="utf-8")
+		xml_ident(xml_object)
+		tree.write('sites/'+path+configure_name,encoding="utf-8")
 
-    def add_viewlets_file(path):
+    def add_viewlets_file(self,path):
 		"""
 		MÉTODO RESPONSÁVEL POR GERAR O viewlets.py 
 		"""
 
 		file_name = "viewlets.py"
-		file = open(path+"/"+file_name,"a+")
+		file = open('sites/'+path+"/"+file_name,"a+")
 		file.close()
