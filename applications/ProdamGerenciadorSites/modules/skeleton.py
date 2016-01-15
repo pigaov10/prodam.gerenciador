@@ -20,10 +20,17 @@ class Skeleton:
     	self.request = request
     	self.create_request_project()
 
+	# ##########################################################
+	# ## auxiliary functions
+	# ###########################################################
+
     def create_request_project(self):
-		"""
-		MÉTODO RESPONSÁVEL POR GERAR A ESTRUTURA DE DIRETORIOS 
-		"""
+		'''
+		This is a docstring. The following 3 lines are a doctest:
+		>>> request.vars.name='Max'
+		>>> index()
+		{'name': 'Max'}
+		'''
 		xpaths = ['sites','/viewlets','/browser','/src','/templates']
 
 		mkdir(str(self._post) + str(self.request))
@@ -62,11 +69,17 @@ class Skeleton:
 		# pt file 
 		self.add_template_file(path)
 
+	# ##########################################################
+	# ## auxiliary functions
+	# ###########################################################
 
     def add_configure_file(self,path,project_name,param1='IPortalHeader',param2='IProdamPortal',param3='prodam.gerenciador.cet'):
-		"""
-		MÉTODO RESPONSÁVEL POR GERAR O ARQUIVO ZCML 
-		"""
+		'''
+		This is a docstring. The following 3 lines are a doctest:
+		>>> request.vars.name='Max'
+		>>> index()
+		{'name': 'Max'}
+		'''
 		try:
 			#seta nó para configuração dos namespaces
 			configure = tree_element_first.Element('configure')
@@ -89,20 +102,38 @@ class Skeleton:
 		except ParseError, e:
 			raise HTTP(500,e)
 
+	# ##########################################################
+	# ## auxiliary functions
+	# ###########################################################
+
     def add_template_file(self,path):
-		"""
-		MÉTODO RESPONSÁVEL POR GERAR O TEMPLATE alerta.pt 
-		"""
+		'''
+		This is a docstring. The following 3 lines are a doctest:
+		>>> request.vars.name='Max'
+		>>> index()
+		{'name': 'Max'}
+		'''
+		try:
+			handle = open('sites/'+path+"/alerta.pt","a+")
+		except IOError, e:
+			raise HTTP(500,e) 
+		else:
+			with handle:
+				handle.close()
 		# text = open('sites/components/alerta.pt','r').read()
-		file_name = "alerta.pt"
-		file = open('sites/'+path+"/"+file_name,"a+")
 		# file.write(text)
-		file.close()
+
+	# ##########################################################
+	# ## auxiliary functions
+	# ###########################################################
 
     def add_profile_file(self,path):
-		"""
-		MÉTODO RESPONSÁVEL POR GERAR O PROFILE CONFIGURAÇÃO VIEWLET viewlets.xml
-		"""
+		'''
+		This is a docstring. The following 3 lines are a doctest:
+		>>> request.vars.name='Max'
+		>>> index()
+		{'name': 'Max'}
+		'''
 		#seta nó para configuração dos namespaces
 		xml_object = tree_element_first.Element('object')
 
@@ -111,11 +142,21 @@ class Skeleton:
 		xml_ident(xml_object)
 		tree.write('sites/'+path+configure_name,encoding="utf-8")
 
-    def add_viewlets_file(self,path):
-		"""
-		MÉTODO RESPONSÁVEL POR GERAR O viewlets.py 
-		"""
+	# ##########################################################
+	# ## auxiliary functions
+	# ###########################################################
 
-		file_name = "viewlets.py"
-		file = open('sites/'+path+"/"+file_name,"a+")
-		file.close()
+    def add_viewlets_file(self,path):
+		'''
+		This is a docstring. The following 3 lines are a doctest:
+		>>> request.vars.name='Max'
+		>>> index()
+		{'name': 'Max'}
+		'''
+		try:
+			handle = open('sites/'+path+"/viewlets.py","a+")
+		except IOError, e:
+			raise HTTP(500,e) 
+		else:
+			with handle:
+				handle.close()
