@@ -26,43 +26,31 @@ class Skeleton:
 
     def create_request_project(self):
 		'''
-		This is a docstring. The following 3 lines are a doctest:
-		>>> request.vars.name='Max'
-		>>> index()
-		{'name': 'Max'}
+		create site skeleton and configure files
+		>>> self.request
+		>>> controllers/site.py
 		'''
 		xpaths = ['sites','/viewlets','/browser','/src','/templates']
-
 		mkdir(str(self._post) + str(self.request))
 		path = str(self._post) + str(self.request)
 		path  += xpaths[3]
-		mkdir(path) # directory src
-
 		#split do nome do site separado por .
 		directories = (str(self._post) + str(self.request)).split(".")
 		for directory in directories:
 			path += "/"+directory
-			mkdir(path);
-
 		# profiles
 		profiles = path
-		mkdir(profiles+"/profiles");
 		mkdir(profiles+"/profiles/default/");
 		self.add_profile_file(path)
 		#browser
 		path += xpaths[2]
-		mkdir(path);
-		
 		# viewlets
 		path += xpaths[1]
 		mkdir(path);
-		
 		# zcml file
 		self.add_configure_file(path,str(self._post) + str(self.request))
-		
 		# python file configure
 		self.add_viewlets_file(path)
-		
 		# templates
 		path += xpaths[4]
 		mkdir(path);

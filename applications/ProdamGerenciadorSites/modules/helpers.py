@@ -11,7 +11,7 @@ from gluon.http import HTTP
 
 def mkdir(xpath,root='sites/'):
 	try:
-		os.mkdir(str(root)+str(xpath), 0755 );
+		os.makedirs(root+str(xpath),0775)
 	except Exception, e:
 		raise HTTP(500,e)
 
